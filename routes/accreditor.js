@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 // Load the data model
 var accreditorModel = require('../models/accreditorModel');
+var programModel = require('../models/programModel');
+
 
 //*************************************************//
 // All of these routes are relative to /accreditor      //
@@ -24,9 +26,11 @@ function index(req, res, next) {
   res.render(
   	'accreditor', 
   	{ title: 'Add Accreditor', 
-  	  accreditor: accreditorModel
+  	  accreditor: accreditorModel,
+  	  program: programModel
   	}
   	);
+
 }
 
 function record_data(req, res, next) {

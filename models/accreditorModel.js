@@ -3,9 +3,9 @@
 
 var accreditor_data = 
 [
-  	{name: 'Frodo', lastname: 'Baggins'}, 
-  	{name: 'Sam', lastname: 'Gamgee'},
-  	{name: 'Peregrin', lastname: 'Took'} 
+  	{name: 'Frodo', program: 'Program 1'}, 
+  	{name: 'Sam', program: 'Program 2'},
+  	{name: 'Peregrin', program: 'Program 3'} 
 ];
 
 module.exports = accreditor_data;
