@@ -4,6 +4,8 @@ var router = express.Router();
 var accreditorModel = require('../models/accreditorModel');
 var programModel = require('../models/programModel');
 
+// console.log(programModel);
+
 
 //*************************************************//
 // All of these routes are relative to /accreditor      //
@@ -15,6 +17,8 @@ router.get('/addaccreditor', index);
 // POST data from 
 router.post('/record', record_data);
 
+console.log(record_data);
+
 
 //
 // Functions responding to HTTP requests
@@ -25,12 +29,11 @@ function index(req, res, next) {
 	// par2 : data to be used when rendering the view
   res.render(
   	'accreditor', 
-  	{ title: 'Add Accreditor', 
-  	  accreditor: accreditorModel,
-  	  program: programModel
+  	{ title: 'Add Accreditor',
+      program: programModel,
+  	  accreditor: accreditorModel
   	}
   	);
-
 }
 
 function record_data(req, res, next) {

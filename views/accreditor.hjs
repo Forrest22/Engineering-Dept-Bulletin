@@ -13,9 +13,9 @@
   		Accreditor name: <input type="text" name="name" value="">
   		<br>
 
-      Program name: <select class="form-control" id="select-program">
-      {{#progam}} 
-        <option>{name}</option>
+      Program name: <select type="text" name="program">
+      {{#program}} 
+        <option>{{name}}</option>
       {{/program}} 
       </select>
       <br>
@@ -26,7 +26,7 @@
 	<h1>Accreditor List</h1>
 	 <ul>
 	 {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
-	 	<li>{{name}} {{lastname}}</li>  <!-- fields in the array entry -->
+	 	<li>{{name}} -- {{program}}</li>  <!-- fields in the array entry -->
 	 {{/accreditor}}	<!-- end of loop -->
 	</ul>
 	</div>
