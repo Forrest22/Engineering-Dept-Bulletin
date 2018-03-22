@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 // Load the data model
-var usersModel = require('../models/usersModel');
+var accreditorModel = require('../models/accreditorModel');
 
 //*************************************************//
-// All of these routes are relative to /accreditor //
+// All of these routes are relative to /accreditor      //
 //*************************************************//
 
-// GET to Add Character page
-router.get('/addcharacter', index);
+// GET to Add Accreditor page
+router.get('/addaccreditor', index);
 
 // POST data from 
 router.post('/record', record_data);
@@ -23,17 +23,16 @@ function index(req, res, next) {
 	// par2 : data to be used when rendering the view
   res.render(
   	'accreditor', 
-  	{ 
-  		title: 'Add Character', 
-  		accreditor: usersModel
+  	{ title: 'Add Accreditor', 
+  	  accreditor: accreditorModel
   	}
-  );
+  	);
 }
 
 function record_data(req, res, next) {
 	console.log(req.body); // show in the console what the user entered
-	usersModel.push(req.body); // Add the user data to the users_data dataset
-	res.redirect('/accreditor/addcharacter');	// reload the page
+	accreditorModel.push(req.body); // Add the user data to the accreditor_data dataset
+	res.redirect('/accreditor/addaccreditor');	// reload the page
 }
 
 // Export the router, required in app.js

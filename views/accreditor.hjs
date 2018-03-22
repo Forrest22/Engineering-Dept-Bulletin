@@ -7,7 +7,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Add Accreditor</h1>
+    <h1>Register</h1>
 
     <form action="/accreditor/record" method="post">
   		First name:<br>
@@ -22,7 +22,7 @@
 	<div>
 	<h1>Current List</h1>
 	 <ul>
-	 {{#accreditor}}   <!-- Iterate over the array in users variable -->
+	 {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
 	 	<li>{{name}} {{lastname}}</li>  <!-- fields in the array entry -->
 	 {{/accreditor}}	<!-- end of loop -->
 	</ul>

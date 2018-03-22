@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	res.render('index', 
-		{title: "Engineering Department - Bulletin"});
+		{title: "Engineering Department Bulletin"});
 });
 
 module.exports = router;
