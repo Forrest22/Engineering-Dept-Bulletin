@@ -1,6 +1,7 @@
 // Data stub to used for testing.
 // This will be changed when a database is setup
 
+<<<<<<< HEAD
 var program_data = [];
 
 //creating vars for sqlite server
@@ -34,5 +35,13 @@ db.close((err) => {
   }
   console.log('Close the database connection.');
 });
+=======
+var program_data = 
+[
+  	{name: 'Program 1'}, 
+  	{name: 'Program 2'},
+  	{name: 'Program 3'} 
+];
+>>>>>>> 9103207eba2584463f4d6873b8928f1211052029
 
 module.exports = program_data;
