@@ -38,6 +38,11 @@ function index(req, res, next) {
 
 function record_data(req, res, next) {
 	console.log(req.body); // show in the console what the user entered
+
+
+  accreditorModel.addAccreditor(req.body.name, req.body.program); //trying to add data that will cary over
+
+  
 	accreditorModel.push(req.body); // Add the user data to the accreditor_data dataset
 	res.redirect('/accreditor/addaccreditor');	// reload the page
 }

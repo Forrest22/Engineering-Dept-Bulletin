@@ -15,7 +15,7 @@
 
       Program name: <select type="text" name="program">
       {{#program}} 
-        <option>{{name}}</option>
+        <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
       {{/program}} 
       </select>
       <br>
