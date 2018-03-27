@@ -7,23 +7,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Register</h1>
+    <h1>Add Accreditor</h1>
 
     <form action="/accreditor/record" method="post">
-  		First name:<br>
-  		<input type="text" name="name" value="">
+  		Accreditor name: <input type="text" name="name" value="">
   		<br>
- 	 	Last name:<br>
- 	 	<input type="text" name="lastname" value="">
- 	 	<br><br>
- 	 	<input type="submit" value="Submit">
-	</form> 
+
+      Program name: <select type="text" name="program">
+      {{#program}} 
+        <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
+      {{/program}} 
+      </select>
+      <br>
+   	 	<input type="submit" value="Submit">
+  	</form> 
 
 	<div>
-	<h1>Current List</h1>
+	<h1>Accreditor List</h1>
 	 <ul>
 	 {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
-	 	<li>{{name}} {{lastname}}</li>  <!-- fields in the array entry -->
+	 	<li>{{name}} -- {{program}}</li>  <!-- fields in the array entry -->
 	 {{/accreditor}}	<!-- end of loop -->
 	</ul>
 	</div>
