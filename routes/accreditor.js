@@ -2,14 +2,10 @@ var express = require('express');
 var router = express.Router();
 // Load the data model
 var accreditorModel = require('../models/accreditorModel');
-<<<<<<< HEAD
 var programModel = require('../models/programModel');
 
 // console.log(programModel);
-
-=======
-var programModel = require('../models/programModel')
->>>>>>> 9103207eba2584463f4d6873b8928f1211052029
+var programModel = require('../models/programModel');
 
 //*************************************************//
 // All of these routes are relative to /accreditor      //
@@ -33,13 +29,8 @@ function index(req, res, next) {
 	// par2 : data to be used when rendering the view
   res.render(
   	'accreditor', 
-<<<<<<< HEAD
   	{ title: 'Add Accreditor',
       program: programModel,
-=======
-  	{ title: 'Add Accreditor', 
-  	  program: programModel,
->>>>>>> 9103207eba2584463f4d6873b8928f1211052029
   	  accreditor: accreditorModel
   	}
   	);
