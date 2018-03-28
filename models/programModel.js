@@ -34,11 +34,11 @@ db.close((err) => {
   }
   console.log('Close the database connection.');
 });
-var program_data = 
+/*var program_data = 
 [
   	{name: 'Program 1'}, 
   	{name: 'Program 2'},
   	{name: 'Program 3'} 
-];
+];*/
 
 module.exports = program_data;
