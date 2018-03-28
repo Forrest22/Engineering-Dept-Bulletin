@@ -13,3 +13,7 @@ In commandline type each of the following:
 To make sure branch is up to date:
 1. git branch (this is to make sure you're on the correct branch)
 2. git pull
+3. make changes
+4. git checkout master
+5. git merge <your branch>
+6. git push origin master 
