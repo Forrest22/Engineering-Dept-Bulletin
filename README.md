@@ -2,7 +2,7 @@
 
 How to get started!
 Get git going:
-1. git remote add <Insert URL here>
+1. git remote add *Insert URL here*
 2. maybe more? I don't remember but you can google around with git cheatsheets
 
 In commandline type each of the following:
@@ -15,5 +15,5 @@ To make sure branch is up to date:
 2. git pull
 3. make changes
 4. git checkout master
-5. git merge <your branch>
+5. git merge *your branch*
 6. git push origin master 
