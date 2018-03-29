@@ -34,6 +34,7 @@ db.close((err) => {
   }
   console.log('Close the database connection.');
 });
+
 /*var program_data = 
 [
   	{name: 'Program 1'}, 

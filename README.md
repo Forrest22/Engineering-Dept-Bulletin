@@ -17,3 +17,7 @@ To make sure branch is up to date:
 4. git checkout master
 5. git merge *your branch*
 6. git push origin master 
+
+
+Sources:
+- http://www.sqlitetutorial.net/sqlite-nodejs/

@@ -3,9 +3,9 @@ var router = express.Router();
 // Load the data model
 var accreditorModel = require('../models/accreditorModel');
 var programModel = require('../models/programModel');
+var sqlite3 = require('sqlite3').verbose();
 
-// console.log(programModel);
-var programModel = require('../models/programModel');
+
 
 //*************************************************//
 // All of these routes are relative to /accreditor      //
@@ -30,18 +30,86 @@ function index(req, res, next) {
   res.render(
   	'accreditor', 
   	{ title: 'Add Accreditor',
-      program: programModel,
-  	  accreditor: accreditorModel
-  	}
-  	);
+    program: programModel,
+    accreditor: accreditorModel
+  }
+  );
+}
+
+function addToDB(POST){
+  //Checks for a match of data
+  var i;
+  for (i = 0; i < programModel.length; i++){
+    var temp = String(programModel[i].Degree) + ' -- ' + String(programModel[i].Concentration);
+
+    if(String(POST.program) === temp){
+      console.log("Match!");
+      break;
+    }
+    else{
+      console.log("Oops.");
+      return
+    }
+  }
+
+  //creating vars for sqlite server
+  //connects to the db
+  let db = new sqlite3.Database('./test.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the test database.');
+  });
+
+  //Counts num of rows in table to get Unique ID
+  var sql = 'SELECT COUNT(*) AS numRows FROM ALO';  
+  console.log("Counting Rows");
+
+  var rows;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows = (rows.numRows);
+    console.log(rows)
+  });
+
+
+  // Insert into Accreditation_Body_Program_Map Table
+  sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program)\n' +
+    'VALUES (\'' + POST.name + '\',' + programModel[i].Program_ID + ')';
+  console.log(sql);
+
+  db.run(sql, POST, function(err) {
+    if (err) {
+      return console.log(err.message);
+    }
+    // get the last insert id
+    console.log("Accreditation_Body_Program_Map success.");
+  });
+
+  // Insert into ALO Table
+  sql = 'INSERT INTO ALO (ALO_ID, Accreditor)\n' + 
+    'VALUES (' + (rows+1) + ', \'' + POST.name + '\')';
+  console.log(sql);
+
+  db.run(sql, POST, function(err) {
+    if (err) {
+      return console.log(err.message);
+    }
+    // get the last insert id
+    console.log("ALO success.");
+  });
+  
+  // close the database connection
+  db.close();
 }
 
 function record_data(req, res, next) {
-	console.log(req.body); // show in the console what the user entered
+	// console.log(req.body.program); // show in the console what the user entered
+  console.log(req.body);
 
-
-  // accreditorModel.addAccreditor(req.body.name, req.body.program); //trying to add data that will cary over
-
+  addToDB(req.body)
   
 	accreditorModel.push(req.body); // Add the user data to the accreditor_data dataset
 	res.redirect('/accreditor/addaccreditor');	// reload the page
