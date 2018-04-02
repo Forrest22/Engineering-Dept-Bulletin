@@ -17,7 +17,7 @@ router.get('/addaccreditor', index);
 // POST data from 
 router.post('/record', record_data);
 
-console.log(record_data);
+// console.log(record_data);
 
 
 //
@@ -46,11 +46,11 @@ function addToDB(POST){
     if (programModel[i].Option != null){
       temp = temp + ' ' + String(programModel[i].Option);
     }
-    console.log(temp);
+    // console.log(temp);
 
     //validating input
     if(String(POST.program) === temp){
-      console.log("Match!");
+      console.log("Match for Program_ID!");
       Program_ID = programModel[i].Program_ID;
       break;
     }
@@ -86,18 +86,19 @@ function addToDB(POST){
   // Insert into ALO Table
   sql = 'INSERT INTO ALO(Accreditor, Description) VALUES (?, ?);';
   params = [POST.name, POST.description];
-  console.log(sql);
-  console.log(params);
+  // console.log(sql);
+  // console.log(params);
 
   db.run(sql, params, function(err) {
     if (err) {
-      //NEED TO ERASE PREV INSERT OR CHECK CONSTRAINTS
+      //NEED TO ERASE PREV INSERT OR CHECK CONSTRAINTS and undo anything I added
       return console.log(err.message);
     }
     // get the last insert id
     console.log("ALO insert success.");
   });
 
+  //Deletes the cache of accreditor model to try and update the HTML properly but isn't working :/
   delete require.cache[require.resolve('../models/accreditorModel')];
   
   // close the database connection

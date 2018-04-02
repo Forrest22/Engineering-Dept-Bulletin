@@ -21,7 +21,7 @@ db.all(sql, [], (err, rows) => {
     throw err;
   }
   rows.forEach((row) => {
-    console.log(row);
+    // console.log(row);
     accreditor_data.push(row);
   });
   console.log("accreditor_data pulled successfully.");
