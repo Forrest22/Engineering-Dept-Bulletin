@@ -50,7 +50,7 @@
     <h2>Saved Accreditors</h2>
     <ul class="list-group">
         {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
-        <li class="list-group-item">{{name}} -- {{program}}</li>  <!-- fields in the array entry -->
+        <li class="list-group-item">{{Accreditor}} -- {{Description}}</li>  <!-- fields in the array entry -->
         {{/accreditor}}    <!-- end of loop -->
     </ul>
 </div>

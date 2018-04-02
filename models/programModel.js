@@ -1,5 +1,4 @@
-// Data stub to used for testing.
-// This will be changed when a database is setup
+// Gets all Program Rows from DB
 
 var program_data = [];
 
@@ -11,7 +10,7 @@ let db = new sqlite3.Database('./test.db', (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Connected to the test database.');
+  console.log('Connected to the database.');
 });
 
 let sql = 'SELECT * FROM Program';
@@ -25,6 +24,7 @@ db.all(sql, [], (err, rows) => {
     // console.log(row);
     program_data.push(row);
   });
+  console.log("program_data pulled successfully.");
 });
 
 //closes the connection 
@@ -34,12 +34,5 @@ db.close((err) => {
   }
   console.log('Close the database connection.');
 });
-
-/*var program_data = 
-[
-  	{name: 'Program 1'}, 
-  	{name: 'Program 2'},
-  	{name: 'Program 3'} 
-];*/
 
 module.exports = program_data;

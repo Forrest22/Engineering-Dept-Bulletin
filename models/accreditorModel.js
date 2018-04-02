@@ -1,19 +1,38 @@
-// Data stub to used for testing.
-// This will be changed when a database is setup
+// Gets all Accreditor Rows from DB
 
+var accreditor_data = [];
 
-var accreditor_data = 
-[
-  	{name: 'Frodo', program: 'Program 1'}, 
-  	{name: 'Sam', program: 'Program 2'},
-  	{name: 'Peregrin', program: 'Program 3'} 
-];
+//creating vars for sqlite server
+const sqlite3 = require('sqlite3').verbose();
 
-function addAccreditor(name, program){
-	console.log("addAccreditor");
-	console.log("Name: " + name + ", Program: " + program);
-	accreditor_data.push("name: " + name + ", program: " + program + ", description: " + description);
-	console.log(accreditor_data);
-};
+//connects to the db
+let db = new sqlite3.Database('./test.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the database.');
+});
+
+let sql = 'SELECT * FROM ALO';
+ 
+//gets all for the sql command
+db.all(sql, [], (err, rows) => {
+  if (err) {
+    throw err;
+  }
+  rows.forEach((row) => {
+    console.log(row);
+    accreditor_data.push(row);
+  });
+  console.log("accreditor_data pulled successfully.");
+});
+
+//closes the connection 
+db.close((err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Close the database connection.');
+});
 
 module.exports = accreditor_data;
