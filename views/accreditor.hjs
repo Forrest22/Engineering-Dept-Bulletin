@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<!-- {{ title }} tells HJS to use variable title when
-  		rendering this page -->
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- {{ title }} tells HJS to use variable title when
+        rendering this page -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
     <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Add Accreditor</h1>
+</head>
 
-    <form action="/accreditor/record" method="post">
-  		Accreditor name: <input type="text" name="name" value="">
-  		<br>
+<body>
+<h1>Add Accreditor</h1>
 
-      Program name: <select type="text" name="program">
-      {{#program}} 
-        <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
-      {{/program}} 
-      </select>
-      <br>
-   	 	<input type="submit" value="Submit">
-  	</form> 
+<form action="/accreditor/record" method="post">
+    <div class="form-group">
+        <!--Accreditor Name: <input type="text" class="form-control" name="name" value=""></div>-->
 
-	<div>
-	<h1>Accreditor List</h1>
-	 <ul>
-	 {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
-	 	<li>{{name}} -- {{program}}</li>  <!-- fields in the array entry -->
-	 {{/accreditor}}	<!-- end of loop -->
-	</ul>
-	</div>
+        <div class="form-group">
+            <label for="inputAccreditor">Accreditor Name</label>
+            <input type="accreditor" class="form-control" name="name" id="inputAccreditor"
+                   aria-describedby="accreditorHelp" placeholder="e.g. American Psychological Association">
+        </div>
 
-  <div>
-    <a href="/">Back to main page</a>
-  </div>
-    <p></p>
-  </body>
+        <div class="form-group">
+            <label for="chooseProgram">Program Name</label>
+            <select type="text" name="program" id="chooseProgram" class="form-control">
+                {{#program}}
+                <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
+                {{/program}}
+            </select>
+        </div>
+    </div>
+
+    <!--<input type="submit" value="Submit">-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="form-group">
+    <h2>Saved Accreditors</h2>
+    <ul class="list-group">
+        {{#accreditor}}   <!-- Iterate over the array in accreditor variable -->
+        <li class="list-group-item">{{name}} -- {{program}}</li>  <!-- fields in the array entry -->
+        {{/accreditor}}    <!-- end of loop -->
+    </ul>
+</div>
+
+<div>
+    <a href="/">Back to Main Page</a>
+</div>
+
+</body>
 </html>
