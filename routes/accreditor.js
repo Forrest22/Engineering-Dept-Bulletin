@@ -66,12 +66,14 @@ function addToDB(POST){
   console.log("Counting Rows");
 
   var rows;
-  db.all(sql, [], (err, rows) => {
+  db.run(sql, [], (err, rows) => {
     if (err) {
+      console.log("Error!");
       throw err;
     }
-    rows = (rows.numRows);
-    console.log(rows)
+    rows = (rows[0].numRows);
+    // console.log("Rows: ");
+    // console.log(rows);  
   });
 
 
