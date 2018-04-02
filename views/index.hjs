@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<!-- {{ title }} tells HJS to use variable title when
-  		rendering this page -->
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  	<h1>{{ title }}</h1>
+<head>
 
-  	<!-- This can be turned into a menu easily -->
-  	<ul>
-  		<li> Home </li>
-  		<li> <a href="/accreditor/addaccreditor">Add Accreditor</a> </li>
-  	</ul>
-    <p></p>
-  </body>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!-- {{ title }} tells HJS to use variable title when
+        rendering this page -->
+    <title>{{ title }}</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+
+<!-- This can be turned into a menu easily -->
+<div>
+    <ul class="list-group">
+        <li class="list-group-item"> Home</li>
+        <li class="list-group-item"><a href="/accreditor/addaccreditor">Add Accreditor</a></li>
+    </ul>
+</div>
+</body>
 </html>
+
+
