@@ -24,23 +24,25 @@
         <div class="form-group">
             <label for="inputAccreditor">Accreditor Name</label>
             <input type="accreditor" class="form-control" name="name" id="inputAccreditor"
-                   aria-describedby="accreditorHelp" placeholder="e.g. American Psychological Association">
+                   aria-describedby="accreditorHelp" placeholder="e.g. American Psychological Association" required>
         </div>
 
         <div class="form-group">
             <label for="chooseProgram">Program Name</label>
-            <select type="text" name="program" id="chooseProgram" class="form-control">
+            <select type="text" name="program" id="chooseProgram" class="form-control" required>
+                <option disabled selected value> -- select an option -- </option>
+
                 {{#program}}
                 <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
-                {{/program}}
+                {{/program}} 
             </select>
         </div>
     </div>
-    <button>Next Part</button>
+    <button>Add ALO Description</button>
     <div class="form-group">
         <div class="form-group">
             <label for="inputDescription">ALO Description</label>
-            <textarea type="description" class="form-control" name="description" id="inputDescription"></textarea>
+            <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

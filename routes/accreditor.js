@@ -54,9 +54,8 @@ function addToDB(POST){
       Program_ID = programModel[i].Program_ID;
       break;
     }
-    else{
+    else if (i == programModel.length){
       console.log("Oops, no match for Program_ID.");
-      // window.alert("Oops, no match for Program_ID.");
     }
   }
 
@@ -72,8 +71,8 @@ function addToDB(POST){
   // Insert into Accreditation_Body_Program_Map Table
   sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program) VALUES (?, ?)';
   params = [POST.name, Program_ID];
-  console.log(sql);
-  console.log(params);
+  // console.log(sql);
+  // console.log(params);
 
   db.run(sql, params, function(err) {
     if (err) {
