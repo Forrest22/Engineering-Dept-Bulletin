@@ -12,7 +12,7 @@ var accreditor_data =
 function addAccreditor(name, program){
 	console.log("addAccreditor");
 	console.log("Name: " + name + ", Program: " + program);
-	accreditor_data.push("name: " + name + ", program: " + program);
+	accreditor_data.push("name: " + name + ", program: " + program + ", description: " + description);
 	console.log(accreditor_data);
 };
 

@@ -37,13 +37,15 @@ function index(req, res, next) {
 }
 
 function addToDB(POST){
-  //Checks for a match of data
-  var i;
-  for (i = 0; i < programModel.length; i++){
+  //Checks for a match of data, and Program_ID will be the data's Program_ID
+  var Program_ID;
+  for (var i = 0; i < programModel.length; Program_ID++){
     var temp = String(programModel[i].Degree) + ' -- ' + String(programModel[i].Concentration);
 
+    //validating input
     if(String(POST.program) === temp){
       console.log("Match!");
+      Program_ID = programModel[i].Program_ID;
       break;
     }
     else{
@@ -61,47 +63,33 @@ function addToDB(POST){
   console.log('Connected to the test database.');
   });
 
-  //Counts num of rows in table to get Unique ID
-  var sql = 'SELECT COUNT(*) AS numRows FROM ALO';  
-  console.log("Counting Rows");
-
-  var rows;
-  db.run(sql, [], (err, rows) => {
-    if (err) {
-      console.log("Error!");
-      throw err;
-    }
-    rows = (rows[0].numRows);
-    // console.log("Rows: ");
-    // console.log(rows);  
-  });
-
-
   // Insert into Accreditation_Body_Program_Map Table
-  sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program)\n' +
-    'VALUES (\'' + POST.name + '\',' + programModel[i].Program_ID + ')';
+  sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program) VALUES (?, ?)';
+  params = [POST.name, Program_ID];
   console.log(sql);
+  console.log(params);
 
-  db.run(sql, POST, function(err) {
+  db.run(sql, params, function(err) {
     if (err) {
       return console.log(err.message);
     }
     // get the last insert id
-    console.log("Accreditation_Body_Program_Map success.");
+    console.log("Accreditation_Body_Program_Map insert success.");
   });
 
   // Insert into ALO Table
-  sql = 'INSERT INTO ALO (ALO_ID, Accreditor)\n' + 
-    'VALUES (' + (rows+1) + ', \'' + POST.name + '\')';
+  sql = 'INSERT INTO ALO(Accreditor, Description) VALUES (?, ?);';
+  params = [POST.name, POST.description];
   console.log(sql);
 
-  db.run(sql, POST, function(err) {
+  db.run(sql, params, function(err) {
     if (err) {
       return console.log(err.message);
     }
     // get the last insert id
-    console.log("ALO success.");
+    console.log("ALO insert success.");
   });
+
   
   // close the database connection
   db.close();
