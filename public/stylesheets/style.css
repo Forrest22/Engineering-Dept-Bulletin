@@ -3,6 +3,15 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+div {
+    padding: 5px;
+    width: 55%;
+}
+
 a {
   color: #00B7FF;
+}
+
+ul {
+    width: 55%;
 }
