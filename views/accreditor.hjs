@@ -41,7 +41,7 @@
 
         <div class="form-group">
             <label for="chooseProgram">Program Name</label>
-            <select type="text" name="program" id="chooseProgram" class="form-control">
+            <select type="text" name="program" id="chooseProgram" class="form-control" required>
                 <option disabled selected value> -- select an option -- </option>
                 {{#program}}
                 <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
@@ -53,7 +53,7 @@
     <div class="form-group" id="showOnNext" style="display:none">
       <div class="form-group" id="description">
         <label for="inputDescription">ALO Description</label>
-        <textarea type="description" class="form-control" name="description" id="inputDescription"></textarea>
+        <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </div>
