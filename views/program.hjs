@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- {{ title }} tells HJS to use variable title when
+  rendering this page -->
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <!-- import jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+      $("#show").click(function() {
+        $("#showOnNext").toggle();
+        return false;
+    });
+  });
+  </script>
+
+  <title>{{ title }}</title>
+
+</head>
+
+<body>
+  <h1>Add Program</h1>
+
+  <form action="/program/record" method="post">
+    <div class="form-group">
+        <div class="form-group">
+            <label for="inputProgram">Program Name</label>
+            <input type="program" class="form-control" name="name" id="inputProgram"
+            aria-describedby="programHelp" placeholder="e.g. American Psychological Association" required>
+        </div>
+
+        <div class="form-group">
+            <label for="chooseProgram">Program Name</label>
+            <select type="text" name="program" id="chooseProgram" class="form-control" required>
+                <option disabled selected value> -- select an option -- </option>
+                {{#program}}
+                <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
+                {{/program}} 
+            </select>
+        </div>
+        <button type="next" class="btn btn-primary" id="show">Next</button>
+    </div>
+    <div class="form-group" id="showOnNext" style="display:none">
+      <div class="form-group" id="description">
+        <label for="inputDescription">ALO Description</label>
+        <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+
+<div class="form-group">
+    <h2>Saved Programs</h2>
+    <ul class="list-group">
+      {{#program}}
+      <!-- Iterate over the array in program variable -->
+      <li class="list-group-item">{{Program}} -- {{Description}}</li>
+      <!-- fields in the array entry -->
+      {{/program}}
+      <!-- end of loop -->
+  </ul>
+</div>
+
+<div>
+    <a href="/">Back to Main Page</a>
+</div>
+
+</body>
+
+</html>
