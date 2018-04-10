@@ -1,6 +1,6 @@
 {
-  "name": "expressapp",
-  "version": "0.0.0",
+  "name": "engineering-dept",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
