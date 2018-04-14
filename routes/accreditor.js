@@ -4,6 +4,7 @@ var router = express.Router();
 var accreditorModel = require('../models/accreditorModel');
 var programModel = require('../models/programModel');
 var sqlite3 = require('sqlite3').verbose();
+// var popups = require('popups');
 
 
 
@@ -52,49 +53,76 @@ function addToDB(POST){
     if(String(POST.program) === temp){
       console.log("Match for Program_ID!");
       Program_ID = programModel[i].Program_ID;
-      break;
     }
     else if (i == programModel.length){
-      console.log("Oops, no match for Program_ID.");
+      return console.log("Oops, no match for Program_ID.");
     }
   }
 
   //creating vars for sqlite server
   //connects to the db
   let db = new sqlite3.Database('./test.db', (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the test database.');
+    if (err) {
+      console.error(err.message);
+    }
+    console.log('Connected to the test database.');
   });
 
-  // Insert into Accreditation_Body_Program_Map Table
-  sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program) VALUES (?, ?)';
-  params = [POST.name, Program_ID];
-  // console.log(sql);
-  // console.log(params);
+  runSQL = true;
 
-  db.run(sql, params, function(err) {
-    if (err) {
-      return console.log(err.message);
+  //Does these queries in order
+  db.serialize(() => {
+    // Checks to see if the name exists in the database
+    db.each("SELECT Name FROM Accreditation_Body_Program_Map WHERE Name = '" + POST.name + "'", function(err, row) {
+      console.log(row);
+      if(row.Name == POST.name){
+        runSQL = false;
+        console.log("runSQL: ");
+        console.log(runSQL);
+      }
+    });
+
+    // If the name doesn't exist
+    // **STILL RUNS EVEN IF FALSE?!?! WHAT?!?!?**
+    if (runSQL) {
+      // Insert into Accreditation_Body_Program_Map Table
+      sql = 'INSERT INTO Accreditation_Body_Program_Map (Name, Program) VALUES (?, ?)';
+      params = [POST.name, Program_ID];
+      // console.log(sql);
+      // console.log(params);
+
+      db.run(sql, params, function(err) {
+        if (err) {
+          console.log("YOU DONE GOOFED.");
+          return console.log(err.message);
+        }
+        // get the last insert id
+        console.log("Accreditation_Body_Program_Map insert success.");
+      });
+
+      // Insert into ALO Table
+      sql = 'INSERT INTO ALO(Accreditor, Description) VALUES (?, ?)';
+      params = [POST.name, POST.description];
+      // console.log(sql);
+      // console.log(params);
+
+      db.run(sql, params, function(err) {
+        if (err) {
+          //NEED TO ERASE PREV INSERT OR CHECK CONSTRAINTS and undo anything I added
+          console.log("YOU DONE GOOFED.");
+          return console.log(err.message);
+        }
+        // get the last insert id
+        console.log("ALO insert success.");
+      });
     }
-    // get the last insert id
-    console.log("Accreditation_Body_Program_Map insert success.");
-  });
-
-  // Insert into ALO Table
-  sql = 'INSERT INTO ALO(Accreditor, Description) VALUES (?, ?);';
-  params = [POST.name, POST.description];
-  // console.log(sql);
-  // console.log(params);
-
-  db.run(sql, params, function(err) {
-    if (err) {
-      //NEED TO ERASE PREV INSERT OR CHECK CONSTRAINTS and undo anything I added
-      return console.log(err.message);
+    else{
+      console.log("Error message!");
+      //uses the popups module to alert the user that program already exists
+      popups.alert({
+        content: 'Error! Accreditor already exists!'
+      });
     }
-    // get the last insert id
-    console.log("ALO insert success.");
   });
 
   //Deletes the cache of accreditor model to try and update the HTML properly but isn't working :/
@@ -108,7 +136,7 @@ function record_data(req, res, next) {
 	// console.log(req.body.program); // show in the console what the user entered
   console.log(req.body);
 
-  addToDB(req.body)
+  addToDB(req.body);
   
 	accreditorModel.push(req.body); // Add the user data to the accreditor_data dataset
 	res.redirect('/accreditor/addaccreditor');	// reload the page
