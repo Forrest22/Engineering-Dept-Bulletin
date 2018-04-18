@@ -13,7 +13,7 @@ var sqlite3 = require('sqlite3').verbose();
 //*************************************************//
 
 // GET to Add Accreditor page
-router.get('/addaccreditor', index);
+router.get('/addALO', index);
 
 // POST data from 
 router.post('/record', record_data);
@@ -29,8 +29,8 @@ function index(req, res, next) {
 	// par1 : a view in the views folder
 	// par2 : data to be used when rendering the view
   res.render(
-  	'accreditor', 
-  	{ title: 'Add Accreditor',
+  	'ALO', 
+  	{ title: 'Add ALO',
     program: programModel,
     accreditor: accreditorModel
   }
@@ -140,7 +140,7 @@ function record_data(req, res, next) {
   addToDB(req.body);
   
 	accreditorModel.push(req.body); // Add the user data to the accreditor_data dataset
-	res.redirect('/ALO/addALO');	// reload the page
+	res.redirect('/accreditor/addaccreditor');	// reload the page
 }
 
 // Export the router, required in app.js
