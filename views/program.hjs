@@ -17,8 +17,12 @@
 
   <script>
   $(document).ready(function() {
-      $("#show").click(function() {
-        $("#showOnNext").toggle();
+      $("#showProgramReqButton").click(function() {
+        $("#showProgramReq").toggle();
+        return false;
+    });
+      $("#addKSAButton").click(function() {
+        $("#addKSA").toggle();
         return false;
     });
   });
@@ -35,26 +39,38 @@
   <form action="/program/record" method="post">
     <div class="form-group">
         <div class="form-group">
-            <label for="inputProgram">Program Name</label>
-            <input type="program" class="form-control" name="name" id="inputProgram"
-            aria-describedby="programHelp" placeholder="e.g. American Psychological Association" required>
-        </div>
-
-        <div class="form-group">
-            <label for="chooseProgram">Program Name</label>
+            <label for="chooseProgram">Degree</label>
             <select type="text" name="program" id="chooseProgram" class="form-control" required>
                 <option disabled selected value> -- select an option -- </option>
                 {{#program}}
-                <option>{{Degree}} -- {{Concentration}} {{Option}}</option>
+                <option>{{Degree}}</option>
                 {{/program}} 
             </select>
+            <input type="concentration" class="form-control" name="concentration" id="inputConcentration"
+            aria-describedby="concentrationHelp" placeholder="Concentration" required>
+            <input type="options" class="form-control" name="options" id="inputOptions"
+            aria-describedby="optionsHelp" placeholder="Options" required>
+            <select type="text" name="accreditor" id="chooseAccreditor" class="form-control" required>
+                <option disabled selected value> -- select an option -- </option>
+                {{#accreditor}}
+                <option>{{Accreditor}}</option>
+                {{/accreditor}} 
+            </select>
         </div>
-        <button type="next" class="btn btn-primary" id="show">Next</button>
+        <button type="next" class="btn btn-primary" id="showProgramReqButton">Program Requirements</button>
+        <button type="next" class="btn btn-primary" id="addKSAButton">Add KSA</button>
     </div>
-    <div class="form-group" id="showOnNext" style="display:none">
+    <div class="form-group" id="showProgramReq" style="display:none">
       <div class="form-group" id="description">
-        <label for="inputDescription">ALO Description</label>
+        <label for="inputDescription">Program Requirements</label>
         <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
+      </div>
+    </div>
+    <div class="form-group" id="addKSA" style="display:none">
+      <div class="form-group" id="description">
+        <label for="inputDescription">Add KSA</label>
+        <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </div>
