@@ -27,6 +27,8 @@ db.all(sql, [], (err, rows) => {
   console.log("program_data pulled successfully.");
 });
 
+console.log(program_data);
+
 //closes the connection 
 db.close((err) => {
   if (err) {
@@ -34,5 +36,7 @@ db.close((err) => {
   }
   console.log('Close the database connection.');
 });
+
+console.log(program_data);
 
 module.exports = program_data;

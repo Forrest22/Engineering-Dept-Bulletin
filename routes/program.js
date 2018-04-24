@@ -3,6 +3,8 @@ var router = express.Router();
 // Load the data model
 var programModel = require('../models/programModel');
 var accreditorModel = require('../models/accreditorModel');
+// var departmentModel = require('../models/departmentModel');
+// var ALOmodel = require('../models/ALOmodel')
 var sqlite3 = require('sqlite3').verbose();
 
 
@@ -31,12 +33,21 @@ function index(req, res, next) {
   	'program', 
   	{ title: 'Add Program',
     program: programModel,
-    accreditorModel: accreditorModel
+    accreditor: accreditorModel,
+    // department: departmentModel
+    classes: autopop()
+    // ALO: ALOmodel
   }
   );
 }
 
+function autopop(){
+  console.log("autopop()");
+  return ["A", "B", "C"];
+}
+
 function addToDB(POST){
+
   //Checks for a match of data, and Program_ID will be the data's Program_ID
   var Program_ID;
   for (var i = 0; i < programModel.length; i++){
@@ -108,7 +119,7 @@ function record_data(req, res, next) {
 	// console.log(req.body.program); // show in the console what the user entered
   console.log(req.body);
 
-  addToDB(req.body)
+  // addToDB(req.body)
   
 	programModel.push(req.body); // Add the user data to the program_data dataset
 	res.redirect('/program/addprogram');	// reload the page

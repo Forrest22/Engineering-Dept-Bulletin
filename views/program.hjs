@@ -71,11 +71,13 @@
         <select type="options" name="department" id="department" required>
           <option disabled selected value> -- select an department -- </option>
           <option>Engineering</option>
+        </select>
         <select type="options" name="classes" id="classes" required>
           <option disabled selected value> -- select classes -- </option>
           {{#classes}}
           <option>{{Classes}}</option>
           {{/classes}} 
+        </select>
       </div>
     </div>
     <div class="form-group" id="addKSA" style="display:none">
@@ -95,6 +97,7 @@
           {{#ALO}}
           <option>{{ALO}}</option>
           {{/ALO}} 
+        </select>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
