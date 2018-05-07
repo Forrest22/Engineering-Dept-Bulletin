@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="chooseProgram">Degree</label>
             <select type="text" name="program" id="chooseProgram" class="form-control" required>
-                <option disabled selected value> -- select an option -- </option>
+                <option disabled selected value> -- select an degree -- </option>
                 {{#program}}
                 <option>{{Degree}}</option>
                 {{/program}} 
@@ -49,9 +49,9 @@
             <input type="concentration" class="form-control" name="concentration" id="inputConcentration"
             aria-describedby="concentrationHelp" placeholder="Concentration" required>
             <input type="options" class="form-control" name="options" id="inputOptions"
-            aria-describedby="optionsHelp" placeholder="Options" required>
+            aria-describedby="optionsHelp" placeholder="Options">
             <select type="text" name="accreditor" id="chooseAccreditor" class="form-control" required>
-                <option disabled selected value> -- select an option -- </option>
+                <option disabled selected value> -- select an accreditor -- </option>
                 {{#accreditor}}
                 <option>{{Accreditor}}</option>
                 {{/accreditor}} 
@@ -72,10 +72,10 @@
           <option disabled selected value> -- select an department -- </option>
           <option>Engineering</option>
         </select>
-        <select type="options" name="classes" id="classes" required>
+        <select type="options" name="classes" id="classes" onchange="autopop()" required>
           <option disabled selected value> -- select classes -- </option>
           {{#classes}}
-          <option>{{Classes}}</option>
+          <option>{{Name}}</option>
           {{/classes}} 
         </select>
       </div>
@@ -84,18 +84,18 @@
       <div class="form-group" id="description">
         <label for="inputDescription">KSA Description</label>
         <textarea type="description" class="form-control" name="description" id="inputDescription" required></textarea>
-        <label for="multiCourses">Bloom Level</label>
-          <input type="radio" name="multiCourses" value="1">1
-          <input type="radio" name="multiCourses" value="2">2
-          <input type="radio" name="multiCourses" value="3">3
-          <input type="radio" name="multiCourses" value="4">4
-          <input type="radio" name="multiCourses" value="5">5
-        <input type="classification" class="form-control" name="class" id="class"
+        <label for="bloomLevel">Bloom Level</label>
+          <input type="radio" name="bloomLevel" value="1">1</input>
+          <input type="radio" name="bloomLevel" value="2">2</input>
+          <input type="radio" name="bloomLevel" value="3">3</input>
+          <input type="radio" name="bloomLevel" value="4">4</input>
+          <input type="radio" name="bloomLevel" value="5">5</input>
+        <input type="classification" class="form-control" name="classification" id="classification"
             aria-describedby="descHelp" placeholder="Classification" required>
-        <select type="options" name="classes" id="classes" required>
+        <select multiple type="options" name="alo-select" id="ALO" required>
           <option disabled selected value> -- select ALOs -- </option>
           {{#ALO}}
-          <option>{{ALO}}</option>
+          <option>{{Description}}</option>
           {{/ALO}} 
         </select>
       </div>

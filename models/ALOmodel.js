@@ -1,6 +1,6 @@
-// Gets all Program Rows from DB
+// Gets all ALO Rows from DB
 
-var program_data = [];
+var ALO_data = [];
 
 //creating vars for sqlite server
 const sqlite3 = require('sqlite3').verbose();
@@ -13,7 +13,7 @@ let db = new sqlite3.Database('./test.db', (err) => {
   console.log('Connected to the database.');
 });
 
-let sql = 'SELECT * FROM Program';
+let sql = 'SELECT * FROM ALO';
  
 //gets all for the sql command
 db.all(sql, [], (err, rows) => {
@@ -22,12 +22,10 @@ db.all(sql, [], (err, rows) => {
   }
   rows.forEach((row) => {
     // console.log(row);
-    program_data.push(row);
+    ALO_data.push(row);
   });
-  console.log("program_data pulled successfully.");
+  console.log("ALO_data pulled successfully.");
 });
-
-console.log(program_data);
 
 //closes the connection 
 db.close((err) => {
@@ -37,6 +35,4 @@ db.close((err) => {
   console.log('Close the database connection.');
 });
 
-console.log("program_data: " + String(program_data));
-
-module.exports = program_data;
+module.exports = ALO_data;

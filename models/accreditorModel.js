@@ -13,7 +13,7 @@ let db = new sqlite3.Database('./test.db', (err) => {
   console.log('Connected to the database.');
 });
 
-let sql = 'SELECT * FROM ALO';
+let sql = 'SELECT DISTINCT Accreditor FROM ALO';
  
 //gets all for the sql command
 db.all(sql, [], (err, rows) => {
