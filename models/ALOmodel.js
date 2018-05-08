@@ -10,7 +10,7 @@ let db = new sqlite3.Database('./test.db', (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Connected to the database.');
+  // console.log('Connected to the database.');
 });
 
 let sql = 'SELECT * FROM ALO';
@@ -24,7 +24,7 @@ db.all(sql, [], (err, rows) => {
     // console.log(row);
     ALO_data.push(row);
   });
-  console.log("ALO_data pulled successfully.");
+  // console.log("ALO_data pulled successfully.");
 });
 
 //closes the connection 
@@ -32,7 +32,7 @@ db.close((err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Close the database connection.');
+  // console.log('Close the database connection.');
 });
 
 module.exports = ALO_data;

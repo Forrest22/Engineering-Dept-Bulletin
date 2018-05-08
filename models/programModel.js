@@ -10,7 +10,7 @@ let db = new sqlite3.Database('./test.db', (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Connected to the database.');
+  // console.log('Connected to the database.');
 });
 
 let sql = 'SELECT * FROM Program';
@@ -20,23 +20,24 @@ db.all(sql, [], (err, rows) => {
   if (err) {
     throw err;
   }
+  // console.log(rows);
   rows.forEach((row) => {
     // console.log(row);
     program_data.push(row);
   });
-  console.log("program_data pulled successfully.");
+  // console.log("program_data pulled successfully.");
 });
 
-console.log(program_data);
+// console.log(program_data);
 
 //closes the connection 
 db.close((err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log('Close the database connection.');
+  // console.log('Close the database connection.');
 });
 
-console.log("program_data: " + String(program_data));
+// console.log("program_data: " + String(program_data));
 
 module.exports = program_data;

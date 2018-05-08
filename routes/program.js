@@ -41,6 +41,7 @@ function index(req, res, next) {
       ALO: ALOmodel,
     }
     );
+  // console.log(programModel);
 }
 
 function autopop(){
@@ -63,12 +64,12 @@ function addToDB(POST){
 
     //validating input
     if(String(POST.program) === temp){
-      console.log("Match for Program_ID!");
+      // console.log("Match for Program_ID!");
       Program_ID = programModel[i].Program_ID;
       break;
     }
     else if (i == programModel.length){
-      return console.log("Oops, no match for Program_ID.");
+      return console.log("Oops, no match for Program & details.");
     }
   }
 
@@ -79,12 +80,12 @@ function addToDB(POST){
 
     //validating input
     if(String(POST.accreditor) === temp){
-      console.log("Match for ALO_ID!");
-      ALO_ID = ALOmodel[i].ALO_ID;
+      // console.log("Match for ALO_ID!");
+      ALO_ID = ALOmodel[i].A1LO_ID;
       break;
     }
     else if (i == ALOmodel.length){
-      return console.log("Oops, no match for ALO_ID.");
+      return console.log("Oops, no match for ALO.");
     }
   }
 
@@ -109,10 +110,10 @@ function addToDB(POST){
 
     // Gets the ID of the last insert so I don't have to search for it
     // console.log(this);
-    KSA_ID = int(this.lastID);
+    KSA_ID = this.lastID;
     console.log(KSA_ID);
 
-    console.log("KSA insert success.");
+    // console.log("KSA insert success.");
   });
 
   console.log(KSA_ID);
@@ -127,7 +128,7 @@ function addToDB(POST){
       return console.log(err.message);
     }
     // get the last insert id
-    console.log("ALO_KSA_Map insert success.");
+    // console.log("ALO_KSA_Map insert success.");
   });
 
   // Insert into KSA_Program_Map Table
@@ -140,7 +141,7 @@ function addToDB(POST){
       return console.log(err.message);
     }
     // get the last insert id
-    console.log("KSA_Program_Map insert success.");
+    // console.log("KSA_Program_Map insert success.");
   });
 
   //Deletes the cache of program model to try and update the HTML properly but isn't working :/
@@ -153,10 +154,10 @@ function addToDB(POST){
 function record_data(req, res, next) {
 	// console.log(req.body.program); // show in the console what the user entered
   // console.log(req);
-  console.log(res.body);
+  // console.log(res.body);
   // console.log(next);
 
-  addToDB(req.body);
+  // addToDB(req.body);
   // console.log(ALOmodel);
 	// programModel.push(req.body); // Add the user data to the program_data dataset
 	res.redirect('/program/addprogram');	// reload the page

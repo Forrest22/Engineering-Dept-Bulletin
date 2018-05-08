@@ -42,9 +42,9 @@
             <label for="chooseProgram">Degree</label>
             <select type="text" name="program" id="chooseProgram" class="form-control" required>
                 <option disabled selected value> -- select an degree -- </option>
-                {{#program}}
-                <option>{{Degree}}</option>
-                {{/program}} 
+                  {{#department}}
+                  <option>{{Degree}}</option>
+                  {{/department}} 
             </select>
             <input type="concentration" class="form-control" name="concentration" id="inputConcentration"
             aria-describedby="concentrationHelp" placeholder="Concentration" required>
@@ -57,7 +57,7 @@
                 {{/accreditor}} 
             </select>
         </div>
-        <button type="next" class="btn btn-primary" id="showProgramReqButton">Program Requirements</button>
+        <button type="next" class="btn btn-primary" id="showProgramReqButton">Add Program Requirement</button>
         <button type="next" class="btn btn-primary" id="addKSAButton">Add KSA</button>
     </div>
     <div class="form-group" id="showProgramReq" style="display:none">
@@ -70,7 +70,9 @@
         <input type="radio" name="multiCourses" value="false">No
         <select type="options" name="department" id="department" required>
           <option disabled selected value> -- select an department -- </option>
-          <option>Engineering</option>
+          {{#department}}
+          <option>{{Degree}}</option>
+          {{/department}}
         </select>
         <select type="options" name="classes" id="classes" onchange="autopop()" required>
           <option disabled selected value> -- select classes -- </option>
@@ -108,7 +110,7 @@
     <ul class="list-group">
       {{#program}}
       <!-- Iterate over the array in program variable -->
-      <li class="list-group-item">{{Program}} -- {{Description}}</li>
+      <li class="list-group-item">{{Degree}} -- {{Concentration}} {{Option}}</li>
       <!-- fields in the array entry -->
       {{/program}}
       <!-- end of loop -->
