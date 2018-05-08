@@ -94,7 +94,7 @@ function addToDB(POST){
 
       db.run(sql, params, function(err) {
         if (err) {
-          console.log("YOU DONE GOOFED.");
+          console.log("Accreditation_Body_Program_Map insert failure.");
           return console.log(err.message);
         }
         // get the last insert id
@@ -110,7 +110,7 @@ function addToDB(POST){
       db.run(sql, params, function(err) {
         if (err) {
           //NEED TO ERASE PREV INSERT OR CHECK CONSTRAINTS and undo anything I added
-          console.log("YOU DONE GOOFED.");
+          console.log("ALO insert failure.");
           return console.log(err.message);
         }
         // get the last insert id
@@ -118,11 +118,7 @@ function addToDB(POST){
       });
     }
     else{
-      console.log("Error message!");
-      //uses the popups module to alert the user that program already exists
-      popups.alert({
-        content: 'Error! Accreditor already exists!'
-      });
+       return console.log("Error message!");
     }
   });
 

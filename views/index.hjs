@@ -23,7 +23,7 @@
     <ul class="list-group">
         <li class="list-group-item"> Home</li>
         <li class="list-group-item"><a href="/accreditor/addaccreditor">Add Accreditor</a></li>
-        <!-- <li class="list-group-item"><a href="/ALO/addALO">Add ALO</a></li> -->
+        <li class="list-group-item"><a href="/ALO/addALO">Add ALO</a></li>
         <li class="list-group-item"><a href="/program/addprogram">Add Program</a></li>
     </ul>
 </div>

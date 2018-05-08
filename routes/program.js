@@ -152,7 +152,7 @@ function record_data(req, res, next) {
   // console.log(res.body);
   // console.log(next);
 
-  // addToDB(req.body);
+  addToDB(req.body);
   // console.log(ALOmodel);
 	// programModel.push(req.body); // Add the user data to the program_data dataset
 	res.redirect('/program/addprogram');	// reload the page
