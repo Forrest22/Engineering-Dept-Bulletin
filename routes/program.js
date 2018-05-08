@@ -4,7 +4,8 @@ var router = express.Router();
 var programModel = require('../models/programModel');
 var accreditorModel = require('../models/accreditorModel');
 var departmentModel = require('../models/departmentModel');
-var ALOmodel = require('../models/ALOmodel')
+var autopop = require('../models/autoPop');
+var ALOmodel = require('../models/ALOmodel');
 var sqlite3 = require('sqlite3').verbose();
 
 
@@ -16,7 +17,7 @@ var sqlite3 = require('sqlite3').verbose();
 // GET to Add Program page
 router.get('/addprogram', index);
 
-// POST data from 
+// POST data from
 router.post('/record', record_data);
 
 // console.log(record_data);
@@ -32,22 +33,16 @@ function index(req, res, next) {
   // console.log(ALOmodel);
   // console.log(programModel);
   res.render(
-  	'program', 
+  	'program',
   	{ title: 'Add Program',
       program: programModel,
       accreditor: accreditorModel,
       department: departmentModel,
-      classes: autopop(),
+      classes: autopop,
       ALO: ALOmodel,
     }
     );
   // console.log(programModel);
-}
-
-function autopop(){
-  console.log("autopop(), need to populate this based on department dropdown in program requirements section");
-
-  return [{Name:"Bob"},{Name:"Alex"}];
 }
 
 function addToDB(POST){
@@ -146,7 +141,7 @@ function addToDB(POST){
 
   //Deletes the cache of program model to try and update the HTML properly but isn't working :/
   delete require.cache[require.resolve('../models/programModel')];
-  
+
   // close the database connection
   db.close();
 }
