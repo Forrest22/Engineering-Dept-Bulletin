@@ -5,7 +5,6 @@ let db = new sqlite3.Database('./test.db', (err) => {
         return console.error(err.message);
     }
 });
-
 var autopopSQL = "SELECT Name FROM Course WHERE Department_ID='1'";
 var courses = [];
 
