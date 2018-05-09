@@ -31,7 +31,7 @@ function index(req, res, next) {
 	// par1 : a view in the views folder
 	// par2 : data to be used when rendering the view
   // console.log(ALOmodel);
-  // console.log(programModel);
+  // console.log(autopop);
   res.render(
   	'program',
   	{ title: 'Add Program',
@@ -111,7 +111,7 @@ function addToDB(POST){
     // console.log("KSA insert success.");
   });
 
-  console.log(KSA_ID);
+  // console.log(KSA_ID);
 
   // Insert into ALO_KSA_Map Table
   // **Nothing on the UI/sheets about SkillLevel input**
